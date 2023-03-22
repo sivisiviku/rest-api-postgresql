@@ -50,3 +50,13 @@ app.put('/', (req, res) => {
     }
     res.send('update success')
 })
+
+app.delete('/:id', (req, res) => {
+    client.query(`delete from role where id=${req.params.id}`, (err, result) => {
+        if(err) {
+            res.send(err.message)
+        } else {
+            res.send(result.rowCount)
+        }
+    })
+})
